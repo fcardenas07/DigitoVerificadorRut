@@ -12,10 +12,15 @@ public class DigitoVerificador {
         rut = invertirRut(rut);
         int[] digitos = multiplicarDigitos(rut);
         int suma = sumarDigitos(digitos);
-        int resultado = dividirMultiplicar(suma);
+        int sumaDividida = dividirSuma(suma);
+        int resultado = multiplicar(sumaDividida);
         int resta = Math.abs(suma - resultado);
         String digitoVerificador = asignarDigito(resta);
         System.out.println("Digito Verificador = " + digitoVerificador);
+    }
+
+    private static int dividirSuma(int suma) {
+        return suma / 11;
     }
 
     private static String asignarDigito(int resta) {
@@ -32,16 +37,14 @@ public class DigitoVerificador {
         return digito;
     }
 
-    private static int dividirMultiplicar(int suma) {
-        int numero = suma / 11;
-        numero = numero * 11;
-        return numero;
+    private static int multiplicar(int suma) {
+        return suma * 11;
     }
 
     private static int sumarDigitos(int[] digitos) {
         int suma = 0;
-        for (int i = 0; i < digitos.length; i++) {
-            suma += digitos[i];
+        for (int digito : digitos) {
+            suma += digito;
         }
         return suma;
     }
